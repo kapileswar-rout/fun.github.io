@@ -54,11 +54,18 @@ startGameButton.addEventListener('click', () => {
 });
 
 newGameButton.addEventListener('click', () => {
-  // Reset the board only but keep stats and player names
+  // Swap the players' turns when a new game starts
+  if (currentPlayer === 'X') {
+    currentPlayer = 'O';
+    turnStatus.textContent = `${playerOInput.value}'s turn (O)`;
+  } else {
+    currentPlayer = 'X';
+    turnStatus.textContent = `${playerXInput.value}'s turn (X)`;
+  }
+
+  // Reset the board state
   boardState = Array(9).fill(null);  // Clear the board state
   gameActive = true;  // Activate the game
-  currentPlayer = 'X';  // Start with Player X
-  turnStatus.textContent = `${playerXInput.value}'s turn (X)`;  // Update turn status
 
   // Clear the board cells visually
   cells.forEach(cell => {
